@@ -1,0 +1,28 @@
+Fiverr Profil – YD-IT (Vorlage)
+
+Titel:
+Remote Datacenter Expert – Cross-Connect Troubleshooting / Patch-Panel Audits / Mini-MOPs
+
+Kurzbeschreibung:
+I help companies who don’t have a senior datacenter technician in-house. 10+ years hands-on DC experience: power, fiber, cross-connects, remote hands, documentation and troubleshooting.
+
+Beschreibung (Englisch):
+I support small IT teams and businesses that run racks in datacenters but don’t have a senior DC technician on staff.
+
+I can help you with:
+• Cross-connect troubleshooting (light levels, loops, wrong patching)
+• Fiber & OTDR report interpretation
+• Patch-panel audits (documentation, relabeling, cleanup plan)
+• Mini-MOP creation (step-by-step for your on-site techs)
+• Rack optimization (power balance, airflow, cable management)
+• Remote cabling review based on photos / videos
+
+How it works:
+1. You send me your problem (ticket text, photos, diagrams, OTDR, logs)
+2. I analyze and ask a few targeted questions if needed
+3. You get a clear action plan in simple language, not fluffy buzzwords
+4. Optional: I review the final state after your techs have implemented the changes
+
+Contact:
+YD-IT – Remote Hands, Troubleshooting & IT Solutions
+Email: yd-it-service@gmx.de
