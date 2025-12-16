@@ -5,6 +5,7 @@
   <title>YD-IT – Remote Hands, Troubleshooting & IT Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="YD-IT bietet Remote Hands, Troubleshooting, Datacenter-Consulting und IT-Lösungen im Rhein-Main-Gebiet und remote für Firmen und Privatkunden." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
@@ -17,16 +18,13 @@
     a { color: #a5b4fc; text-decoration: none; }
     a:hover { text-decoration: underline; }
     header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      position: sticky; top: 0; z-index: 20;
       backdrop-filter: blur(18px);
       background: linear-gradient(to right, rgba(15,23,42,0.95), rgba(2,6,23,0.9));
       border-bottom: 1px solid rgba(30,64,175,0.6);
       padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
     }
     .logo-wrap { display: flex; align-items: center; gap: 10px; }
     .logo-mark {
@@ -36,14 +34,21 @@
       box-shadow: 0 0 30px rgba(59,130,246,0.7);
       font-size: 16px; font-weight: 700;
     }
-    .logo-text-main {
-      font-weight: 700; letter-spacing: .15em; font-size: 13px; text-transform: uppercase;
-    }
-    .logo-text-sub {
-      font-size: 11px; color: #9ca3af; letter-spacing: .12em; text-transform: uppercase;
-    }
+    .logo-text-main { font-weight: 700; letter-spacing: .15em; font-size: 13px; text-transform: uppercase; }
+    .logo-text-sub { font-size: 11px; color: #9ca3af; letter-spacing: .12em; text-transform: uppercase; }
+    .header-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
     .header-contact { text-align: right; font-size: 12px; line-height: 1.4; }
     .header-contact a { font-weight: 500; }
+    .lang-btn {
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      border: 1px solid #374151;
+      background: rgba(2,6,23,0.5);
+      color: #e5e7eb;
+      cursor: pointer;
+      white-space: nowrap;
+    }
     main { max-width: 1040px; margin: 0 auto; padding: 28px 16px 64px; }
     h1 { font-size: 32px; margin: 0 0 10px; }
     h2 { font-size: 22px; margin-top: 32px; margin-bottom: 10px; }
@@ -56,14 +61,8 @@
       border: 1px solid rgba(55,65,81,0.9);
       font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #9ca3af;
     }
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 999px;
-      background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,0.8);
-    }
-    .hero {
-      display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 26px; margin-top: 24px; align-items: center;
-    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,0.8); }
+    .hero { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr); gap: 26px; margin-top: 24px; align-items: center; }
     .hero-card {
       border-radius: 20px; padding: 18px 18px 20px;
       background: radial-gradient(circle at top left, rgba(30,64,175,0.65), #020617 55%, #020617 100%);
@@ -73,20 +72,12 @@
     .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #9ca3af; }
     .pill { padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(75,85,99,0.9); background: rgba(15,23,42,0.7); }
     .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
-    .btn {
-      border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 500;
-      display: inline-flex; align-items: center; gap: 8px;
-      border: none; cursor: pointer; text-decoration: none;
-    }
+    .btn { border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; text-decoration: none; }
     .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #f9fafb; box-shadow: 0 12px 40px rgba(79,70,229,0.7); }
     .btn-ghost { background: transparent; border: 1px solid #374151; color: #e5e7eb; }
     .kpi-text { margin-top: 10px; font-size: 12px; color: #9ca3af; }
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 18px; }
-    .card {
-      border-radius: 18px; padding: 16px 16px 18px;
-      background: radial-gradient(circle at top left, #111827, #020617);
-      border: 1px solid #111827; box-shadow: 0 16px 55px rgba(0,0,0,0.8); font-size: 14px;
-    }
+    .card { border-radius: 18px; padding: 16px 16px 18px; background: radial-gradient(circle at top left, #111827, #020617); border: 1px solid #111827; box-shadow: 0 16px 55px rgba(0,0,0,0.8); font-size: 14px; }
     .card small { font-size: 11px; color: #9ca3af; letter-spacing: .12em; text-transform: uppercase; }
     ul { padding-left: 18px; margin: 6px 0 8px; }
     li { margin-bottom: 3px; font-size: 14px; }
@@ -96,17 +87,17 @@
     .box { border-radius: 18px; padding: 16px 16px 18px; background: #020617; border: 1px solid #111827; font-size: 14px; }
     .box h3 { margin-top: 0; }
     .meta { font-size: 12px; color: #9ca3af; margin-top: 6px; }
-    footer {
-      border-top: 1px solid #111827; padding: 16px; font-size: 12px;
-      color: #6b7280; text-align: center; background: #020617;
-    }
+    footer { border-top: 1px solid #111827; padding: 16px; font-size: 12px; color: #6b7280; text-align: center; background: #020617; }
     .section { margin-top: 36px; }
     .impressum p, .datenschutz p { font-size: 13px; color: #9ca3af; }
+    #content-en { display:none; }
     @media (max-width: 840px) {
-      header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      header { flex-direction: column; align-items: flex-start; }
+      .header-right { width: 100%; justify-content: space-between; }
       .hero, .two-col { grid-template-columns: minmax(0, 1fr); }
       main { padding: 20px 14px 40px; }
       h1 { font-size: 26px; }
+      .header-contact { text-align: left; }
     }
   </style>
 </head>
@@ -119,13 +110,18 @@
         <div class="logo-text-sub">Remote Hands · Troubleshooting · IT Solutions</div>
       </div>
     </div>
-    <div class="header-contact">
-      <div><a href="tel:+4915206955078">+49 152 06955078</a></div>
-      <div><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></div>
-      <div style="color:#6b7280;font-size:11px;">Rhein-Main-Gebiet & Remote</div>
+
+    <div class="header-right">
+      <button class="lang-btn" id="langToggle" type="button">EN</button>
+      <div class="header-contact">
+        <div><a href="tel:+4915206955078">+49 152 06955078</a></div>
+        <div><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></div>
+        <div style="color:#6b7280;font-size:11px;" id="regionLine">Rhein-Main-Gebiet & Remote</div>
+      </div>
     </div>
   </header>
-  <main>
+
+  <main id="content-de">
     <section class="hero">
       <div>
         <span class="badge"><span class="badge-dot"></span> Datacenter & IT Micro Services</span>
@@ -144,9 +140,7 @@
           <a href="https://wa.me/4915206955078" class="btn btn-primary">Jetzt Problem per WhatsApp schildern</a>
           <a href="#kontakt" class="btn btn-ghost">Kontakt & Preise</a>
         </div>
-        <div class="kpi-text">
-          Typische Kunden: kleine IT-Teams, Büros, Praxen, Agenturen, Selbstständige, Privathaushalte.
-        </div>
+        <div class="kpi-text">Typische Kunden: kleine IT-Teams, Büros, Praxen, Agenturen, Selbstständige, Privathaushalte.</div>
       </div>
       <div class="hero-card">
         <h3>So läuft die Zusammenarbeit ab</h3>
@@ -156,7 +150,7 @@
           <li>Wir entscheiden: Remote-Zugriff oder Vor-Ort-Termin im Rhein-Main-Gebiet.</li>
           <li>Ich löse das Problem und erkläre in Klartext, was gemacht wurde.</li>
         </ol>
-        <p class="meta">Kein Fachchinesisch, keine versteckten Posten. Nur saubere Arbeit und klare Kommunikation.</p>
+        <p class="meta">Kein Fachchinesisch, keine versteckten <strong>Kosten</strong>. Nur saubere Arbeit und klare Kommunikation.</p>
       </div>
     </section>
 
@@ -241,17 +235,11 @@
     <section class="section two-col" id="kontakt">
       <div class="box">
         <h3>Kontakt & Anfrage</h3>
-        <p><strong>YD-IT</strong><br/>
-        Remote Hands · Troubleshooting · IT Solutions</p>
-        <p><strong>Telefon / WhatsApp:</strong><br/>
-          <a href="tel:+4915206955078">+49 152 06955078</a></p>
-        <p><strong>E-Mail:</strong><br/>
-          <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
-        <p><strong>Einsatzgebiet vor Ort:</strong><br/>
-          Rhein-Main-Gebiet (u. a. Frankfurt, Wiesbaden, Mainz, Darmstadt, Offenbach, Flörsheim).</p>
-        <p class="meta">
-          Am einfachsten: kurze Nachricht per WhatsApp mit Beschreibung + Fotos. Dann kann ich schnell sagen, was sinnvoll ist und womit Sie preislich rechnen können.
-        </p>
+        <p><strong>YD-IT</strong><br/>Remote Hands · Troubleshooting · IT Solutions</p>
+        <p><strong>Telefon / WhatsApp:</strong><br/><a href="tel:+4915206955078">+49 152 06955078</a></p>
+        <p><strong>E-Mail:</strong><br/><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+        <p><strong>Einsatzgebiet vor Ort:</strong><br/>Rhein-Main-Gebiet (u. a. Frankfurt, Wiesbaden, Mainz, Darmstadt, Offenbach, Flörsheim).</p>
+        <p class="meta">Am einfachsten: kurze Nachricht per WhatsApp mit Beschreibung + Fotos. Dann kann ich schnell sagen, was sinnvoll ist und womit Sie preislich rechnen können.</p>
       </div>
       <div class="box">
         <h3>Wie starten wir am einfachsten?</h3>
@@ -268,47 +256,206 @@
     <section class="section impressum" id="impressum">
       <h2>Impressum</h2>
       <p><strong>Angaben nach § 5 TMG</strong></p>
-      <p>
-        YD-IT<br/>
-        Amin Marrouaa<br/>
-        Nördlingerstraße 12<br/>
-        65439 Flörsheim am Main<br/>
-        Deutschland
-      </p>
-      <p>
-        Telefon: <a href="tel:+4915206955078">+49 152 06955078</a><br/>
-        E-Mail: <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a>
-      </p>
-      <p>
-        Verantwortlich für den Inhalt dieser Seite nach § 18 Abs. 2 MStV:<br/>
-        Amin Marrouaa, Anschrift wie oben.
-      </p>
-      <p>
-        Hinweis: Kleinunternehmer nach § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen.
-      </p>
+      <p>YD-IT<br/>Amin Marrouaa<br/>Nördlingerstraße 12<br/>65439 Flörsheim am Main<br/>Deutschland</p>
+      <p>Telefon: <a href="tel:+4915206955078">+49 152 06955078</a><br/>E-Mail: <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+      <p>Verantwortlich für den Inhalt dieser Seite nach § 18 Abs. 2 MStV:<br/>Amin Marrouaa, Anschrift wie oben.</p>
+      <p>Hinweis: Kleinunternehmer nach § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen.</p>
     </section>
 
     <section class="section datenschutz" id="datenschutz">
       <h2>Datenschutzhinweise (Kurzfassung)</h2>
-      <p>
-        Diese Website ist eine einfache, statische Seite. Es werden keine eigenen Cookies gesetzt, keine Analytics-Tools eingebunden und keine Nutzerprofile erstellt.
-      </p>
-      <p>
-        <strong>Server-Logs:</strong> Beim Aufruf der Seite kann der Hosting-Anbieter (z. B. GitHub Pages) technisch bedingt Logdaten (z. B. IP-Adresse, Uhrzeit, aufgerufene Datei) verarbeiten. Diese Verarbeitung liegt in der Verantwortung des Hosting-Anbieters.
-      </p>
-      <p>
-        <strong>Kontakt per E-Mail oder Telefon:</strong> Wenn Sie mich kontaktieren, werden die von Ihnen mitgeteilten Daten (z. B. Name, Kontaktdaten, Beschreibung Ihres Anliegens) zur Bearbeitung der Anfrage verarbeitet. Ich gebe diese Daten nicht an Dritte weiter, sofern dies nicht zur Auftragserfüllung erforderlich oder gesetzlich vorgeschrieben ist.
-      </p>
-      <p>
-        Sie haben im Rahmen der gesetzlichen Vorgaben Rechte auf Auskunft, Berichtigung und Löschung Ihrer Daten. Für entsprechende Anfragen reicht eine formlose E-Mail.
-      </p>
-      <p class="meta">
-        Diese Hinweise ersetzen keine individuelle Rechtsberatung. Bei rechtlichen Detailfragen sollten Sie eine Rechtsanwältin oder einen Rechtsanwalt konsultieren.
-      </p>
+      <p>Diese Website ist eine einfache, statische Seite. Es werden keine eigenen Cookies gesetzt, keine Analytics-Tools eingebunden und keine Nutzerprofile erstellt.</p>
+      <p><strong>Server-Logs:</strong> Beim Aufruf der Seite kann der Hosting-Anbieter (z. B. GitHub Pages) technisch bedingt Logdaten (z. B. IP-Adresse, Uhrzeit, aufgerufene Datei) verarbeiten. Diese Verarbeitung liegt in der Verantwortung des Hosting-Anbieters.</p>
+      <p><strong>Kontakt per E-Mail oder Telefon:</strong> Wenn Sie mich kontaktieren, werden die von Ihnen mitgeteilten Daten (z. B. Name, Kontaktdaten, Beschreibung Ihres Anliegens) zur Bearbeitung der Anfrage verarbeitet. Ich gebe diese Daten nicht an Dritte weiter, sofern dies nicht zur Auftragserfüllung erforderlich oder gesetzlich vorgeschrieben ist.</p>
+      <p>Sie haben im Rahmen der gesetzlichen Vorgaben Rechte auf Auskunft, Berichtigung und Löschung Ihrer Daten. Für entsprechende Anfragen reicht eine formlose E-Mail.</p>
+      <p class="meta">Diese Hinweise ersetzen keine individuelle Rechtsberatung. Bei rechtlichen Detailfragen sollten Sie eine Rechtsanwältin oder einen Rechtsanwalt konsultieren.</p>
     </section>
   </main>
-  <footer>
-    © 2025 YD-IT – Remote Hands, Troubleshooting & IT Solutions · yd-it.de
-  </footer>
+
+  <main id="content-en">
+    <section class="hero">
+      <div>
+        <span class="badge"><span class="badge-dot"></span> Datacenter & IT Micro Services</span>
+        <h1>Remote Hands & IT Solutions — no fluff.</h1>
+        <p class="tagline">
+          YD-IT supports small teams, freelancers and private clients in the Rhine-Main area and remotely:
+          fixing datacenter issues, stabilizing IT, and delivering clean, reliable setups.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Remote Hands</span>
+          <span class="pill">Troubleshooting</span>
+          <span class="pill">Datacenter Consulting</span>
+          <span class="pill">On-site IT Service</span>
+        </div>
+        <div class="cta-row">
+          <a href="https://wa.me/4915206955078" class="btn btn-primary">Send your issue via WhatsApp</a>
+          <a href="#contact-en" class="btn btn-ghost">Contact & pricing</a>
+        </div>
+        <div class="kpi-text">Typical clients: small IT teams, offices, clinics, agencies, freelancers, households.</div>
+      </div>
+      <div class="hero-card">
+        <h3>How it works</h3>
+        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
+          <li>You describe the issue (photos / screenshots welcome).</li>
+          <li>I give a quick assessment and a price range.</li>
+          <li>We choose: remote support or an on-site visit in the Rhine-Main area.</li>
+          <li>I fix it and explain what was done in plain language.</li>
+        </ol>
+        <p class="meta">No buzzwords, no hidden <strong>fees</strong>. Just clean work and clear communication.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Remote Datacenter Services</h2>
+      <div class="card-grid">
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Cross-Connect & Fiber Troubleshooting</h3>
+          <p>Help with light-level issues, loops, wrong patching and “mysterious” link drops.</p>
+          <ul>
+            <li>Analysis of photos, OTDR reports & ticket text</li>
+            <li>Concrete fix plan in plain language</li>
+            <li>Optional: Mini-MOP for on-site technicians</li>
+          </ul>
+          <div class="price-row"><span>Standard</span><span>from €150 / hour</span></div>
+          <div class="price-row"><span>Urgent / weekend</span><span>€250–600 / hour</span></div>
+        </div>
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Patch-Panel Audits & Rack Optimization</h3>
+          <p>Cleaner racks, better documentation, fewer mistakes — ideal for small teams without a senior DC tech.</p>
+          <ul>
+            <li>Photo-based cabling review</li>
+            <li>Issue list & optimization suggestions</li>
+            <li>Rack layout & labeling recommendations</li>
+          </ul>
+          <div class="price-row"><span>Patch-panel audit</span><span>fixed price from €199</span></div>
+          <div class="price-row"><span>Rack optimization plan</span><span>fixed price from €179</span></div>
+        </div>
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Mini-MOPs & Change Support</h3>
+          <p>Practical mini-MOPs your on-site technicians can follow step by step.</p>
+          <ul>
+            <li>1–3 pages, clearly structured</li>
+            <li>Risk notes & pre/post checks</li>
+            <li>Rollback plan if needed</li>
+          </ul>
+          <div class="price-row"><span>Mini-MOP</span><span>from €149</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Local IT Services (Rhine-Main Area)</h2>
+      <div class="card-grid">
+        <div class="card">
+          <small>On-site</small>
+          <h3>PC, Laptop & Console</h3>
+          <ul>
+            <li>Setup & reinstall</li>
+            <li>Diagnostics & performance tuning</li>
+            <li>PS5 / console cleaning & maintenance</li>
+          </ul>
+          <div class="price-row"><span>Console cleaning</span><span>€25–40</span></div>
+          <div class="price-row"><span>PC reinstall</span><span>€80–120</span></div>
+        </div>
+        <div class="card">
+          <small>On-site</small>
+          <h3>Wi‑Fi, Router & TV</h3>
+          <ul>
+            <li>Router & Wi‑Fi setup</li>
+            <li>Wi‑Fi optimization</li>
+            <li>Smart TV & streaming setup</li>
+          </ul>
+          <div class="price-row"><span>Router/Wi‑Fi setup</span><span>€50–80</span></div>
+        </div>
+        <div class="card">
+          <small>On-site</small>
+          <h3>Cabling & Setup</h3>
+          <ul>
+            <li>Clean cable routing & labeling</li>
+            <li>Gaming setup optimization</li>
+            <li>Small IT projects at home or office</li>
+          </ul>
+          <div class="price-row"><span>On-site hourly rate</span><span>€60–75 / hour</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-col" id="contact-en">
+      <div class="box">
+        <h3>Contact</h3>
+        <p><strong>YD-IT</strong><br/>Remote Hands · Troubleshooting · IT Solutions</p>
+        <p><strong>Phone / WhatsApp:</strong><br/><a href="tel:+4915206955078">+49 152 06955078</a></p>
+        <p><strong>Email:</strong><br/><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+        <p><strong>On-site area:</strong><br/>Rhine-Main (e.g., Frankfurt, Wiesbaden, Mainz, Darmstadt, Offenbach, Flörsheim).</p>
+        <p class="meta">Fastest way: send a WhatsApp message with a short description + photos. I’ll reply with a clear recommendation and a price range.</p>
+      </div>
+      <div class="box">
+        <h3>Getting started</h3>
+        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
+          <li>Message me via WhatsApp or email.</li>
+          <li>I review your case and propose remote support or an on-site visit.</li>
+          <li>We agree on a clear scope for time & cost.</li>
+          <li>I fix it and document the key points.</li>
+        </ol>
+        <p class="meta">Long-term support for small offices/clinics/agencies is available.</p>
+      </div>
+    </section>
+
+    <section class="section impressum">
+      <h2>Legal notice (Imprint)</h2>
+      <p>YD-IT<br/>Amin Marrouaa<br/>Nördlingerstraße 12<br/>65439 Flörsheim am Main<br/>Germany</p>
+      <p>Phone: <a href="tel:+4915206955078">+49 152 06955078</a><br/>Email: <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+      <p>Responsible for content: Amin Marrouaa (address above).</p>
+      <p>Small business according to §19 UStG (no VAT shown).</p>
+    </section>
+
+    <section class="section datenschutz">
+      <h2>Privacy notes (short)</h2>
+      <p>This is a simple static website. No cookies are set by the site and no analytics tools are embedded.</p>
+      <p><strong>Server logs:</strong> The hosting provider (e.g., GitHub Pages) may process technical log data (e.g., IP address, timestamp, requested file).</p>
+      <p><strong>Contact:</strong> If you contact me, your provided data is processed to handle your request. Data is not shared unless required for service delivery or by law.</p>
+      <p>You have legal rights to access, correction and deletion of your data. For requests, send a simple email.</p>
+      <p class="meta">This is not legal advice.</p>
+    </section>
+  </main>
+
+  <footer>© 2025 YD-IT – Remote Hands, Troubleshooting & IT Solutions · yd-it.de</footer>
+
+  <script>
+    const btn = document.getElementById('langToggle');
+    const de = document.getElementById('content-de');
+    const en = document.getElementById('content-en');
+    const region = document.getElementById('regionLine');
+    const metaDesc = document.querySelector('meta[name="description"]');
+
+    function setLang(lang){
+      const isEN = (lang === 'en');
+      de.style.display = isEN ? 'none' : 'block';
+      en.style.display = isEN ? 'block' : 'none';
+
+      document.documentElement.lang = isEN ? 'en' : 'de';
+      btn.textContent = isEN ? 'DE' : 'EN';
+      region.textContent = isEN ? 'Rhine-Main area & Remote' : 'Rhein-Main-Gebiet & Remote';
+
+      if (metaDesc){
+        metaDesc.setAttribute('content', isEN
+          ? 'YD-IT provides remote hands, troubleshooting, datacenter consulting and IT services in the Rhine-Main area and remotely.'
+          : 'YD-IT bietet Remote Hands, Troubleshooting, Datacenter-Consulting und IT-Lösungen im Rhein-Main-Gebiet und remote für Firmen und Privatkunden.'
+        );
+      }
+
+      localStorage.setItem('yd_lang', lang);
+    }
+
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('yd_lang') || 'de';
+      setLang(current === 'de' ? 'en' : 'de');
+    });
+
+    setLang(localStorage.getItem('yd_lang') || 'de');
+  </script>
 </body>
 </html>
