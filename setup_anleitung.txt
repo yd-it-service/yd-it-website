@@ -1,0 +1,29 @@
+YD-IT Kontaktformular – Setup
+
+Warum das so ist:
+Deine Seite läuft auf GitHub Pages. GitHub Pages hostet statische HTML/CSS/JS-Dateien und unterstützt kein serverseitiges PHP, Python oder Ruby.
+Darum kann ein Formular auf GitHub Pages nicht alleine E-Mails verschicken.
+
+Lösung:
+Nutze Web3Forms oder Formspree.
+Ich habe dir die Variante mit Web3Forms vorbereitet, weil sie für statische Seiten sehr einfach ist.
+
+Schritte:
+1. Gehe auf https://web3forms.com/
+2. Trage deine E-Mail-Adresse ein und erstelle einen Access Key
+3. Öffne deine index.html
+4. Füge die CSS-Regeln aus contact_form_styles.css in deinen <style>-Block ein
+5. Füge den HTML-Block aus contact_form_section.html dort ein, wo das Formular erscheinen soll
+6. Ersetze in der Zeile
+   value="YOUR_ACCESS_KEY_HERE"
+   deinen echten Access Key
+7. Lade die geänderte index.html auf GitHub hoch
+8. Fertig
+
+Optional:
+- Bei Web3Forms kannst du auch eine Redirect-Seite oder Success-Message konfigurieren
+- Formspree geht genauso, dort würdest du statt des Web3Forms-Endpoints einfach dein Formspree action-URL eintragen
+
+Empfohlen:
+Nimm erstmal Web3Forms.
+Es ist für GitHub Pages simpel und schickt die Anfragen direkt an deine E-Mail.

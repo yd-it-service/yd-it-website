@@ -1,0 +1,64 @@
+<!-- CONTACT FORM SECTION START -->
+<section class="section" id="kontaktformular">
+  <h2>Kontaktformular</h2>
+  <div class="two-col">
+    <div class="box">
+      <h3>Direkter Kontakt</h3>
+      <p>Gerne vereinbaren wir einen Termin oder besprechen Ihr Anliegen direkt.</p>
+      <p><strong>Telefon / WhatsApp:</strong><br><a href="tel:+4915206955078">+49 152 06955078</a></p>
+      <p><strong>E-Mail:</strong><br><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+      <p><strong>Einsatzgebiet:</strong><br>Rhein-Main-Gebiet & Remote</p>
+      <p class="meta">Sie können mir auch direkt Fotos, Screenshots oder Rack-/Cage-Infos schicken.</p>
+    </div>
+
+    <div class="box">
+      <h3>Anfrage senden</h3>
+
+      <!--
+      WICHTIG:
+      Ersetze YOUR_ACCESS_KEY_HERE mit deinem Web3Forms Access Key.
+      Kostenlos erstellen unter: https://web3forms.com/
+      -->
+
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+        <input type="hidden" name="subject" value="Neue Anfrage über yd-it.de">
+        <input type="hidden" name="from_name" value="YD-IT Website">
+        <input type="checkbox" name="botcheck" style="display:none;">
+
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">Telefonnummer</label>
+        <input type="text" id="phone" name="phone">
+
+        <label for="email">E-Mail *</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="zip">Postleitzahl</label>
+        <input type="text" id="zip" name="zip">
+
+        <label for="service">Leistung / Thema</label>
+        <select id="service" name="service">
+          <option value="">Bitte auswählen</option>
+          <option>Remote Hands</option>
+          <option>Troubleshooting</option>
+          <option>Patch-Panel Audit</option>
+          <option>Rack Optimierung</option>
+          <option>Datacenter Decommissioning</option>
+          <option>Rack Entrümpelung</option>
+          <option>Cage Rückbau</option>
+          <option>Hardware Demontage</option>
+          <option>Datacenter Cleanup</option>
+          <option>Sonstiges</option>
+        </select>
+
+        <label for="message">Nachricht *</label>
+        <textarea id="message" name="message" rows="7" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Senden</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- CONTACT FORM SECTION END -->
