@@ -21,7 +21,8 @@
       -->
 
       <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+        <!-- Aktualisierte access_key mit bereitgestelltem Schlüssel -->
+        <input type="hidden" name="access_key" value="388847ca-49d5-41a4-97cc-47607b22eb28">
         <input type="hidden" name="subject" value="Neue Anfrage über yd-it.de">
         <input type="hidden" name="from_name" value="YD-IT Website">
         <input type="checkbox" name="botcheck" style="display:none;">
@@ -57,6 +58,15 @@
         <textarea id="message" name="message" rows="7" required></textarea>
 
         <button type="submit" class="btn btn-primary">Senden</button>
+      </form>
+
+      <!-- Zusätzliches einfaches Formular gemäß Anforderung -->
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="388847ca-49d5-41a4-97cc-47607b22eb28">
+        <input type="text" name="name" required>
+        <input type="email" name="email" required>
+        <textarea name="message" required></textarea>
+        <button type="submit">Submit Form</button>
       </form>
     </div>
   </div>
