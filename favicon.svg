@@ -7,5 +7,5 @@
     </radialGradient>
   </defs>
   <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#g)"/>
-  <text x="32" y="40" text-anchor="middle" font-family="system-ui,Segoe UI,Arial" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="1">YD</text>
+  <text x="32" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">YD</text>
 </svg>
