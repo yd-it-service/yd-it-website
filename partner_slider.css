@@ -1,0 +1,28 @@
+
+/* PARTNER SLIDER */
+
+.logo-slider{
+overflow:hidden;
+position:relative;
+width:100%;
+margin-top:30px;
+}
+
+.logo-track{
+display:flex;
+gap:60px;
+animation:scroll 25s linear infinite;
+align-items:center;
+}
+
+.logo-track img{
+height:60px;
+object-fit:contain;
+filter:grayscale(100%);
+opacity:0.9;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
