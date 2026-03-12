@@ -9,7 +9,7 @@
   <style>
 
     .footer-banner-wrap {
-      margin-top: 36px;
+      margin: 30px 0 10px;
       border-radius: 22px;
       overflow: hidden;
       border: 1px solid rgba(30,64,175,0.55);
@@ -30,6 +30,157 @@
       background: linear-gradient(to right, rgba(30,64,175,0.28), rgba(2,6,23,0.95));
       border-top: 1px solid rgba(30,64,175,0.35);
     }
+    .contact-section {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.45fr);
+      gap: 34px;
+      margin-top: 28px;
+      align-items: start;
+    }
+    .contact-panel,
+    .contact-form-panel {
+      border-radius: 22px;
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(15,23,42,0.94), rgba(2,6,23,0.98));
+      border: 1px solid rgba(55,65,81,0.85);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+    }
+    .contact-panel h2,
+    .contact-form-panel h3 {
+      margin-top: 0;
+    }
+    .contact-intro {
+      font-size: 15px;
+      color: #dbe4ff;
+      margin-bottom: 20px;
+    }
+    .contact-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #f8fafc;
+      font-size: 16px;
+    }
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff6b6b, #ff4d4d);
+      color: #fff;
+      font-size: 18px;
+      flex: 0 0 42px;
+      box-shadow: 0 10px 24px rgba(255,77,77,0.28);
+    }
+    .contact-item a {
+      color: #f8fafc;
+      text-decoration: none;
+    }
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+    .contact-subnote {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .styled-form {
+      margin-top: 4px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .form-field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+    .form-field .req {
+      color: #ff6b6b;
+    }
+    .styled-form input[type="text"],
+    .styled-form input[type="email"],
+    .styled-form input[type="tel"],
+    .styled-form textarea,
+    .styled-form input[type="file"] {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: rgba(15,23,42,0.75);
+      color: #f8fafc;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+    }
+    .styled-form input:focus,
+    .styled-form textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.18);
+    }
+    .styled-form textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+    .file-note {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .checkbox-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+    .checkbox-row input {
+      margin-top: 2px;
+    }
+    .submit-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+    .submit-btn {
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff5b5b, #ff4747);
+      color: white;
+      padding: 14px 28px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .04em;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(255,71,71,0.28);
+    }
+    .submit-btn:hover { filter: brightness(1.05); }
+    @media (max-width: 840px) {
+      .contact-section {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .contact-panel,
+      .contact-form-panel {
+        padding: 20px;
+      }
+      .submit-btn { width: 100%; }
+    }
+
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
     body {
@@ -161,7 +312,7 @@
     <section class="hero">
       <div>
         <span class="badge"><span class="badge-dot"></span> Datacenter & IT Micro Services</span>
-        <h1>Remote Hands & IT-Lösungen – ohne Blabla.</h1>
+        <h1>Remote Hands & IT-Lösungen</h1>
         <p class="tagline">
           YD-IT unterstützt kleine Teams, Selbstständige und Privatkunden im Rhein-Main-Gebiet und remote:
           Datacenter-Probleme lösen, IT wieder stabil machen, Setups sauber aufbauen.
@@ -195,7 +346,6 @@
       <img src="yd-it-banner.png.png" alt="YD-IT Banner Rhein-Main Region IT Services 24/7 Support" class="footer-banner" />
       <div class="footer-banner-caption">Rhein-Main Region · IT Services · 24/7 Support</div>
     </div>
-
 
 
     <section class="section">
@@ -306,22 +456,72 @@
       </div>
     </section>
 
-    <section class="section two-col" id="kontakt">
-      <div class="box">
-        <h3>Kontakt & Anfrage</h3>
-        <p><strong>YD-IT</strong><br/>Remote Hands · Troubleshooting · IT Solutions</p>
-        <p><strong>Telefon / WhatsApp:</strong><br/><a href="tel:+4915206955078">+49 152 06955078</a></p>
-        <p><strong>E-Mail:</strong><br/><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
-        <p><strong>Einsatzgebiet vor Ort:</strong><br/>Rhein-Main-Gebiet (u. a. Frankfurt, Wiesbaden, Mainz, Darmstadt, Offenbach, Flörsheim).</p>
-      </div>
-      <div class="box">
-        <h3>Wie starten wir am einfachsten?</h3>
-        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
-          <li>Sie melden sich per WhatsApp oder E-Mail.</li>
-          <li>Ich schaue mir Ihr Thema an und schlage Remote, Vor-Ort oder Rückbau/Cleanup vor.</li>
-          <li>Wir legen einen klaren Rahmen für Zeit & Kosten fest.</li>
-          <li>Ich koordiniere die Umsetzung und dokumentiere die wichtigsten Punkte.</li>
-        </ol>
+    
+
+    
+    <section class="section" id="kontakt">
+      <div class="contact-section">
+        <div class="contact-panel">
+          <h2>Kontakt</h2>
+          <p class="contact-intro">Gerne vereinbaren wir einen Vor-Ort-Termin oder unterstützen Sie direkt remote bei Ihrem Anliegen.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <a href="tel:+4915206955078">+49 152 06955078</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Rhein-Main-Gebiet · Frankfurt · Wiesbaden · Mainz · Darmstadt · Offenbach</span>
+            </div>
+          </div>
+          <p class="contact-subnote">Senden Sie kurz die Eckdaten mit. Bei technischen Fällen helfen Fotos, Ticketnummern oder Rack-/Portangaben direkt mit.</p>
+        </div>
+        <div class="contact-form-panel">
+          <h3>Kontaktformular</h3>
+          <form class="styled-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="access_key" value="388847ca-49d5-41a4-97cc-47607b22eb28">
+            <input type="hidden" name="subject" value="Neue Anfrage über yd-it.de">
+            <input type="hidden" name="from_name" value="YD-IT Website">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="name">Name <span class="req">*</span></label>
+                <input id="name" type="text" name="name" required>
+              </div>
+              <div class="form-field">
+                <label for="phone">Telefonnummer</label>
+                <input id="phone" type="tel" name="phone">
+              </div>
+              <div class="form-field">
+                <label for="email">E-Mail <span class="req">*</span></label>
+                <input id="email" type="email" name="email" required>
+              </div>
+              <div class="form-field">
+                <label for="postal_code">Postleitzahl</label>
+                <input id="postal_code" type="text" name="postal_code">
+              </div>
+              <div class="form-field">
+                <label for="message">Nachricht <span class="req">*</span></label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <div class="form-field">
+                <label for="attachment">Anhang</label>
+                <input id="attachment" type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.webp,.txt">
+                <div class="file-note">Max. Dateigröße: 2 MB · Max. 1 Datei</div>
+              </div>
+              <label class="checkbox-row">
+                <input type="checkbox" name="privacy_consent" required>
+                <span>Hiermit stimme ich der Datenschutzerklärung zu. <span class="req">*</span></span>
+              </label>
+            </div>
+            <div class="submit-row">
+              <button type="submit" class="submit-btn">SENDEN</button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -333,19 +533,13 @@
       <p>Verantwortlich für den Inhalt dieser Seite nach § 18 Abs. 2 MStV:<br/>Amin Marrouaa, Anschrift wie oben.</p>
       <p>Hinweis: Kleinunternehmer nach § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen.</p>
     </section>
-
-    <div class="footer-banner-wrap">
-      <img src="yd-it-banner.png.png" alt="YD-IT Banner Rhein-Main Region IT Services 24/7 Support" class="footer-banner" />
-      <div class="footer-banner-caption">Rhein-Main Region · IT Services · 24/7 Support</div>
-    </div>
-
   </main>
 
   <main id="content-en">
     <section class="hero">
       <div>
         <span class="badge"><span class="badge-dot"></span> Datacenter & IT Micro Services</span>
-        <h1>Remote Hands & IT Solutions — no fluff.</h1>
+        <h1>Remote Hands & IT Solutions</h1>
         <p class="tagline">
           YD-IT supports small teams, freelancers and private clients in the Rhine-Main area and remotely:
           fixing datacenter issues, stabilizing IT, and handling cleanup and decommissioning projects.
@@ -449,23 +643,74 @@
       </div>
     </section>
 
-    <section class="section two-col" id="contact-en">
-      <div class="box">
-        <h3>Contact</h3>
-        <p><strong>YD-IT</strong><br/>Remote Hands · Troubleshooting · IT Solutions</p>
-        <p><strong>Phone / WhatsApp:</strong><br/><a href="tel:+4915206955078">+49 152 06955078</a></p>
-        <p><strong>Email:</strong><br/><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
-      </div>
-      <div class="box">
-        <h3>Getting started</h3>
-        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
-          <li>Message me via WhatsApp or email.</li>
-          <li>I review your case and propose remote, on-site or cleanup/decommissioning support.</li>
-          <li>We define a clear scope for time & cost.</li>
-          <li>I coordinate the work and document the key points.</li>
-        </ol>
+    
+  
+    <section class="section" id="contact-en">
+      <div class="contact-section">
+        <div class="contact-panel">
+          <h2>Contact</h2>
+          <p class="contact-intro">We can arrange an on-site appointment or help you remotely right away, depending on the case.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <a href="tel:+4915206955078">+49 152 06955078</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Rhine-Main area · Frankfurt · Wiesbaden · Mainz · Darmstadt · Offenbach</span>
+            </div>
+          </div>
+          <p class="contact-subnote">Feel free to include photos, ticket IDs, rack labels or port details. That usually speeds things up immediately.</p>
+        </div>
+        <div class="contact-form-panel">
+          <h3>Contact form</h3>
+          <form class="styled-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="access_key" value="388847ca-49d5-41a4-97cc-47607b22eb28">
+            <input type="hidden" name="subject" value="New inquiry via yd-it.de">
+            <input type="hidden" name="from_name" value="YD-IT Website">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="name-en">Name <span class="req">*</span></label>
+                <input id="name-en" type="text" name="name" required>
+              </div>
+              <div class="form-field">
+                <label for="phone-en">Phone number</label>
+                <input id="phone-en" type="tel" name="phone">
+              </div>
+              <div class="form-field">
+                <label for="email-en">Email <span class="req">*</span></label>
+                <input id="email-en" type="email" name="email" required>
+              </div>
+              <div class="form-field">
+                <label for="postal_code-en">Postal code</label>
+                <input id="postal_code-en" type="text" name="postal_code">
+              </div>
+              <div class="form-field">
+                <label for="message-en">Message <span class="req">*</span></label>
+                <textarea id="message-en" name="message" required></textarea>
+              </div>
+              <div class="form-field">
+                <label for="attachment-en">Attachment</label>
+                <input id="attachment-en" type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.webp,.txt">
+                <div class="file-note">Max file size: 2 MB · Max 1 file</div>
+              </div>
+              <label class="checkbox-row">
+                <input type="checkbox" name="privacy_consent" required>
+                <span>I agree to the privacy policy. <span class="req">*</span></span>
+              </label>
+            </div>
+            <div class="submit-row">
+              <button type="submit" class="submit-btn">SEND</button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
+
   </main>
 
   <footer>© 2025 YD-IT – Remote Hands, Troubleshooting & IT Solutions · yd-it.de</footer>
