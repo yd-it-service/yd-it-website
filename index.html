@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>YD-IT – Remote Hands, Troubleshooting & IT Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YD-IT bietet Remote Hands, Troubleshooting, Datacenter-Consulting, Datacenter Decommissioning und IT-Lösungen im Rhein-Main-Gebiet und remote." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: #e5e7eb;
+    }
+    a { color: #a5b4fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to right, rgba(15,23,42,0.95), rgba(2,6,23,0.9));
+      border-bottom: 1px solid rgba(30,64,175,0.6);
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #6366f1 45%, #0f172a 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 30px rgba(59,130,246,0.7);
+      font-size: 16px; font-weight: 700;
+    }
+    .logo-text-main { font-weight: 700; letter-spacing: .15em; font-size: 13px; text-transform: uppercase; }
+    .logo-text-sub { font-size: 11px; color: #9ca3af; letter-spacing: .12em; text-transform: uppercase; }
+    .header-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+    .header-contact { text-align: right; font-size: 12px; line-height: 1.4; }
+    .header-contact a { font-weight: 500; }
+    .lang-btn {
+      border-radius: 999px; padding: 8px 12px; font-size: 12px;
+      border: 1px solid #374151; background: rgba(2,6,23,0.5);
+      color: #e5e7eb; cursor: pointer; white-space: nowrap;
+    }
+    main { max-width: 1100px; margin: 0 auto; padding: 28px 16px 64px; }
+    h1 { font-size: 32px; margin: 0 0 10px; }
+    h2 { font-size: 24px; margin-top: 36px; margin-bottom: 10px; }
+    h3 { font-size: 17px; margin-top: 18px; margin-bottom: 6px; }
+    p { color: #cbd5f5; line-height: 1.7; font-size: 15px; }
+    .tagline { font-size: 15px; color: #9ca3af; max-width: 700px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #9ca3af;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,0.8); }
+    .hero { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr); gap: 26px; margin-top: 24px; align-items: center; }
+    .hero-card, .feature-card {
+      border-radius: 20px; padding: 18px 18px 20px;
+      background: radial-gradient(circle at top left, rgba(30,64,175,0.65), #020617 55%, #020617 100%);
+      border: 1px solid rgba(30,64,175,0.6);
+      box-shadow: 0 18px 60px rgba(15,23,42,0.9);
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #9ca3af; }
+    .pill { padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(75,85,99,0.9); background: rgba(15,23,42,0.7); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
+    .btn {
+      border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; text-decoration: none;
+    }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #f9fafb; box-shadow: 0 12px 40px rgba(79,70,229,0.7); }
+    .btn-ghost { background: transparent; border: 1px solid #374151; color: #e5e7eb; }
+    .kpi-text { margin-top: 10px; font-size: 12px; color: #9ca3af; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 18px; }
+    .card {
+      border-radius: 18px; padding: 16px 16px 18px;
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border: 1px solid #111827; box-shadow: 0 16px 55px rgba(0,0,0,0.8); font-size: 14px;
+    }
+    .card small { font-size: 11px; color: #9ca3af; letter-spacing: .12em; text-transform: uppercase; }
+    ul { padding-left: 18px; margin: 8px 0 8px; }
+    li { margin-bottom: 4px; font-size: 14px; }
+    .price-row { display: flex; justify-content: space-between; font-size: 13px; margin-top: 4px; color: #e5e7eb; }
+    .price-row span:last-child { color: #a5b4fc; }
+    .two-col { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0,1.4fr); gap: 22px; margin-top: 22px; align-items: flex-start; }
+    .box { border-radius: 18px; padding: 16px 16px 18px; background: #020617; border: 1px solid #111827; font-size: 14px; }
+    .box h3 { margin-top: 0; }
+    .meta { font-size: 12px; color: #9ca3af; margin-top: 6px; }
+    .section { margin-top: 40px; }
+    .partner-logo-wrap{
+      background:#f8fafc; border-radius:14px; padding:10px; margin-bottom:12px;
+      display:flex; align-items:center; justify-content:center; min-height:110px;
+    }
+    .partner-logo{
+      max-width:100%; max-height:88px; object-fit:contain; display:block;
+    }
+    .service-highlight{
+      border-left: 3px solid #6366f1;
+      padding-left: 14px;
+      margin-top: 8px;
+    }
+    .impressum p, .datenschutz p { font-size: 13px; color: #9ca3af; }
+    footer { border-top: 1px solid #111827; padding: 16px; font-size: 12px; color: #6b7280; text-align: center; background: #020617; }
+    #content-en { display:none; }
+    @media (max-width: 840px) {
+      header { flex-direction: column; align-items: flex-start; }
+      .header-right { width: 100%; justify-content: space-between; }
+      .hero, .two-col { grid-template-columns: minmax(0, 1fr); }
+      main { padding: 20px 14px 40px; }
+      h1 { font-size: 26px; }
+      .header-contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-mark">YD</div>
+      <div>
+        <div class="logo-text-main">YD-IT</div>
+        <div class="logo-text-sub">Remote Hands · Troubleshooting · IT Solutions</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="lang-btn" id="langToggle" type="button">EN</button>
+      <div class="header-contact">
+        <div><a href="tel:+4915206955078">+49 152 06955078</a></div>
+        <div><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></div>
+        <div style="color:#6b7280;font-size:11px;" id="regionLine">Rhein-Main-Gebiet & Remote</div>
+      </div>
+    </div>
+  </header>
+
+  <main id="content-de">
+    <section class="hero">
+      <div>
+        <span class="badge"><span class="badge-dot"></span> Datacenter & IT Micro Services</span>
+        <h1>Remote Hands & IT-Lösungen – ohne Blabla.</h1>
+        <p class="tagline">
+          YD-IT unterstützt kleine Teams, Selbstständige und Privatkunden im Rhein-Main-Gebiet und remote:
+          Datacenter-Probleme lösen, IT wieder stabil machen, Setups sauber aufbauen.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Remote Hands</span>
+          <span class="pill">Troubleshooting</span>
+          <span class="pill">Datacenter Consulting</span>
+          <span class="pill">Vor-Ort IT-Service</span>
+          <span class="pill">Decommissioning</span>
+        </div>
+        <div class="cta-row">
+          <a href="https://wa.me/4915206955078" class="btn btn-primary">Jetzt Problem per WhatsApp schildern</a>
+          <a href="#kontakt" class="btn btn-ghost">Kontakt & Preise</a>
+        </div>
+        <div class="kpi-text">Typische Kunden: kleine IT-Teams, Büros, Praxen, Agenturen, Selbstständige, Privathaushalte.</div>
+      </div>
+      <div class="hero-card">
+        <h3>So läuft die Zusammenarbeit ab</h3>
+        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
+          <li>Sie schildern kurz das Problem oder Projekt.</li>
+          <li>Ich gebe eine Einschätzung & nenne einen groben Preisrahmen.</li>
+          <li>Wir entscheiden: Remote-Zugriff, Vor-Ort-Termin oder Rückbau-/Cleanup-Einsatz.</li>
+          <li>Ich koordiniere die Umsetzung und dokumentiere die wichtigsten Punkte.</li>
+        </ol>
+        <p class="meta">Kein Fachchinesisch, keine versteckten Kosten. Nur saubere Arbeit und klare Kommunikation.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Remote Datacenter Services</h2>
+      <div class="card-grid">
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Cross-Connect & Fiber Troubleshooting</h3>
+          <p>Ich helfe bei Lightlevel-Problemen, Loops, falschen Patches und Link-Ausfällen.</p>
+          <ul>
+            <li>Analyse von Fotos, OTDR-Reports & Ticket-Text</li>
+            <li>Konkreter Fix-Plan in Klartext</li>
+            <li>Optional: Mini-MOP für Techniker vor Ort</li>
+          </ul>
+          <div class="price-row"><span>Standard</span><span>ab 150 € / Stunde</span></div>
+        </div>
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Patch-Panel Audits & Rack-Optimierung</h3>
+          <p>Saubere Racks, nachvollziehbare Doku und weniger Fehler.</p>
+          <ul>
+            <li>Foto-basierte Überprüfung der Verkabelung</li>
+            <li>Fehlerliste & Optimierungsvorschläge</li>
+            <li>Rack-Layout & Label-Empfehlungen</li>
+          </ul>
+          <div class="price-row"><span>Audit</span><span>ab 199 €</span></div>
+        </div>
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Mini-MOPs & Change-Begleitung</h3>
+          <p>Praktische Mini-MOPs, die Techniker vor Ort sauber abarbeiten können.</p>
+          <ul>
+            <li>1–3 Seiten, klar strukturiert</li>
+            <li>Risiken & Checks vor/nach dem Change</li>
+            <li>Rollback-Plan</li>
+          </ul>
+          <div class="price-row"><span>Mini-MOP</span><span>ab 149 €</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="decommissioning">
+      <h2>Datacenter Decommissioning & Cleanup</h2>
+      <p>
+        Für Rückbauprojekte, freie Rackflächen, Cage-Auflösungen und Hardware-Ausbau biete ich auch
+        Decommissioning- und Cleanup-Services an. Das ist eine eigene Sektion, nicht einfach nur „Mitarbeit“.
+      </p>
+      <div class="card-grid">
+        <div class="feature-card">
+          <h3>Leistungen im Bereich Rückbau & Cleanup</h3>
+          <div class="service-highlight">
+            <ul>
+              <li><strong>Rack Entrümpelung</strong></li>
+              <li><strong>Cage Rückbau</strong></li>
+              <li><strong>Hardware Demontage</strong></li>
+              <li><strong>Datacenter Cleanup</strong></li>
+              <li>Rack Deinstallation</li>
+              <li>Datacenter Decommissioning</li>
+              <li>Hardware Recycling / Disposal</li>
+              <li>Full Cage Cleanout</li>
+            </ul>
+          </div>
+        </div>
+        <div class="feature-card">
+          <h3>Typische Einsätze</h3>
+          <ul>
+            <li>Auflösung alter Racks oder kompletter Cage-Bereiche</li>
+            <li>Demontage von ungenutzter Hardware und Kabeln</li>
+            <li>Vorbereitung für Übergabe, Neuvermietung oder Migration</li>
+            <li>Koordination von Sortierung, Ausbau und Entsorgung</li>
+          </ul>
+          <p class="meta">Ideal für Rechenzentrumsflächen, die sauber, leer und übergabefertig gemacht werden müssen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="partner">
+      <h2>Partner & Zusammenarbeit</h2>
+      <p>
+        Für größere Projekte arbeite ich mit zuverlässigen Partnern zusammen, vor allem bei Rückbau,
+        Entrümpelung, technischer Demontage und ergänzenden Services.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="partner-logo-wrap">
+            <img src="partner-marrouh.webp" alt="Marrouh's Rückbau & Entkernung" class="partner-logo">
+          </div>
+          <h3>Marrouh's Rückbau & Entkernung</h3>
+          <p>Spezialisiert auf Rückbau, Entkernung und technische Entrümpelung.</p>
+        </div>
+
+        <div class="card">
+          <div class="partner-logo-wrap">
+            <img src="partner-osce.webp" alt="OSCE IT Services" class="partner-logo">
+          </div>
+          <h3>OSCE IT Services</h3>
+          <p>IT-Service, Support, Reparatur und technische Beratung.</p>
+        </div>
+
+        <div class="card">
+          <div class="partner-logo-wrap">
+            <img src="partner-velour.png" alt="Velour Concierge" class="partner-logo">
+          </div>
+          <h3>Velour Concierge</h3>
+          <p>Premium Service, Organisation und Projektunterstützung.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-col" id="kontakt">
+      <div class="box">
+        <h3>Kontakt & Anfrage</h3>
+        <p><strong>YD-IT</strong><br/>Remote Hands · Troubleshooting · IT Solutions</p>
+        <p><strong>Telefon / WhatsApp:</strong><br/><a href="tel:+4915206955078">+49 152 06955078</a></p>
+        <p><strong>E-Mail:</strong><br/><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+        <p><strong>Einsatzgebiet vor Ort:</strong><br/>Rhein-Main-Gebiet (u. a. Frankfurt, Wiesbaden, Mainz, Darmstadt, Offenbach, Flörsheim).</p>
+      </div>
+      <div class="box">
+        <h3>Wie starten wir am einfachsten?</h3>
+        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
+          <li>Sie melden sich per WhatsApp oder E-Mail.</li>
+          <li>Ich schaue mir Ihr Thema an und schlage Remote, Vor-Ort oder Rückbau/Cleanup vor.</li>
+          <li>Wir legen einen klaren Rahmen für Zeit & Kosten fest.</li>
+          <li>Ich koordiniere die Umsetzung und dokumentiere die wichtigsten Punkte.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section impressum" id="impressum">
+      <h2>Impressum</h2>
+      <p><strong>Angaben nach § 5 TMG</strong></p>
+      <p>YD-IT<br/>Amin Marrouaa<br/>Nördlingerstraße 12<br/>65439 Flörsheim am Main<br/>Deutschland</p>
+      <p>Telefon: <a href="tel:+4915206955078">+49 152 06955078</a><br/>E-Mail: <a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+      <p>Verantwortlich für den Inhalt dieser Seite nach § 18 Abs. 2 MStV:<br/>Amin Marrouaa, Anschrift wie oben.</p>
+      <p>Hinweis: Kleinunternehmer nach § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen.</p>
+    </section>
+  </main>
+
+  <main id="content-en">
+    <section class="hero">
+      <div>
+        <span class="badge"><span class="badge-dot"></span> Datacenter & IT Micro Services</span>
+        <h1>Remote Hands & IT Solutions — no fluff.</h1>
+        <p class="tagline">
+          YD-IT supports small teams, freelancers and private clients in the Rhine-Main area and remotely:
+          fixing datacenter issues, stabilizing IT, and handling cleanup and decommissioning projects.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Remote Hands</span>
+          <span class="pill">Troubleshooting</span>
+          <span class="pill">Datacenter Consulting</span>
+          <span class="pill">On-site IT Service</span>
+          <span class="pill">Decommissioning</span>
+        </div>
+        <div class="cta-row">
+          <a href="https://wa.me/4915206955078" class="btn btn-primary">Send your issue via WhatsApp</a>
+          <a href="#contact-en" class="btn btn-ghost">Contact & pricing</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>How it works</h3>
+        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
+          <li>You describe the issue or project.</li>
+          <li>I give a quick assessment and a price range.</li>
+          <li>We choose remote support, on-site service, or decommissioning/cleanup.</li>
+          <li>I coordinate the work and document the key points.</li>
+        </ol>
+        <p class="meta">No buzzwords, no hidden fees. Just clean work and clear communication.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Remote Datacenter Services</h2>
+      <div class="card-grid">
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Cross-Connect & Fiber Troubleshooting</h3>
+          <p>Help with light-level issues, loops, wrong patching and link failures.</p>
+        </div>
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Patch-Panel Audits & Rack Optimization</h3>
+          <p>Cleaner racks, better documentation, fewer mistakes.</p>
+        </div>
+        <div class="card">
+          <small>Remote · B2B</small>
+          <h3>Mini-MOPs & Change Support</h3>
+          <p>Clear change plans for on-site technicians.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Datacenter Decommissioning & Cleanup</h2>
+      <p>
+        For rack shutdowns, cage clear-outs and hardware removal, I also provide dedicated
+        decommissioning and cleanup services.
+      </p>
+      <div class="card-grid">
+        <div class="feature-card">
+          <h3>Included tasks</h3>
+          <ul>
+            <li><strong>Rack cleanout</strong></li>
+            <li><strong>Cage dismantling</strong></li>
+            <li><strong>Hardware removal</strong></li>
+            <li><strong>Datacenter cleanup</strong></li>
+            <li>Rack deinstallation</li>
+            <li>Datacenter decommissioning</li>
+            <li>Hardware recycling / disposal</li>
+            <li>Full cage cleanout</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Typical use cases</h3>
+          <ul>
+            <li>Closing old racks or full cage areas</li>
+            <li>Removing unused hardware and cabling</li>
+            <li>Preparing spaces for handover, migration or re-rental</li>
+            <li>Coordinating sorting, removal and disposal</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Partners</h2>
+      <p>For larger projects, I work with reliable partners for dismantling, cleanup, technical removal and related services.</p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="partner-logo-wrap"><img src="partner-marrouh.webp" alt="Marrouh's Rückbau & Entkernung" class="partner-logo"></div>
+          <h3>Marrouh's Rückbau & Entkernung</h3>
+          <p>Dismantling, strip-out and technical cleanout support.</p>
+        </div>
+        <div class="card">
+          <div class="partner-logo-wrap"><img src="partner-osce.webp" alt="OSCE IT Services" class="partner-logo"></div>
+          <h3>OSCE IT Services</h3>
+          <p>IT support, repair and technical consulting.</p>
+        </div>
+        <div class="card">
+          <div class="partner-logo-wrap"><img src="partner-velour.png" alt="Velour Concierge" class="partner-logo"></div>
+          <h3>Velour Concierge</h3>
+          <p>Premium service, organization and project support.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-col" id="contact-en">
+      <div class="box">
+        <h3>Contact</h3>
+        <p><strong>YD-IT</strong><br/>Remote Hands · Troubleshooting · IT Solutions</p>
+        <p><strong>Phone / WhatsApp:</strong><br/><a href="tel:+4915206955078">+49 152 06955078</a></p>
+        <p><strong>Email:</strong><br/><a href="mailto:yd-it-service@gmx.de">yd-it-service@gmx.de</a></p>
+      </div>
+      <div class="box">
+        <h3>Getting started</h3>
+        <ol style="padding-left:18px;font-size:13px;color:#e5e7eb;">
+          <li>Message me via WhatsApp or email.</li>
+          <li>I review your case and propose remote, on-site or cleanup/decommissioning support.</li>
+          <li>We define a clear scope for time & cost.</li>
+          <li>I coordinate the work and document the key points.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 YD-IT – Remote Hands, Troubleshooting & IT Solutions · yd-it.de</footer>
+
+  <script>
+    const btn = document.getElementById('langToggle');
+    const de = document.getElementById('content-de');
+    const en = document.getElementById('content-en');
+    const region = document.getElementById('regionLine');
+
+    function setLang(lang){
+      const isEN = lang === 'en';
+      de.style.display = isEN ? 'none' : 'block';
+      en.style.display = isEN ? 'block' : 'none';
+      document.documentElement.lang = isEN ? 'en' : 'de';
+      btn.textContent = isEN ? 'DE' : 'EN';
+      region.textContent = isEN ? 'Rhine-Main area & Remote' : 'Rhein-Main-Gebiet & Remote';
+      localStorage.setItem('yd_lang', lang);
+    }
+
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('yd_lang') || 'de';
+      setLang(current === 'de' ? 'en' : 'de');
+    });
+
+    setLang(localStorage.getItem('yd_lang') || 'de');
+  </script>
+</body>
+</html>
