@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YD-IT – Jobs</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: #e5e7eb;
+    }
+    a { color: #a5b4fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      position: sticky; top: 0;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to right, rgba(15,23,42,0.95), rgba(2,6,23,0.9));
+      border-bottom: 1px solid rgba(30,64,175,0.6);
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #6366f1 45%, #0f172a 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 30px rgba(59,130,246,0.7);
+      font-size: 16px; font-weight: 700;
+    }
+    .logo-text-main { font-weight: 700; letter-spacing: .15em; font-size: 13px; text-transform: uppercase; }
+    .logo-text-sub { font-size: 11px; color: #9ca3af; letter-spacing: .12em; text-transform: uppercase; }
+    main { max-width: 960px; margin: 0 auto; padding: 40px 16px 64px; }
+    .hero-card {
+      border-radius: 22px; padding: 28px;
+      background: radial-gradient(circle at top left, rgba(30,64,175,0.65), #020617 55%, #020617 100%);
+      border: 1px solid rgba(30,64,175,0.6);
+      box-shadow: 0 18px 60px rgba(15,23,42,0.9);
+    }
+    h1 { font-size: 34px; margin: 0 0 10px; }
+    p { color: #cbd5f5; line-height: 1.7; font-size: 16px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; text-decoration: none;
+    }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #f9fafb; box-shadow: 0 12px 40px rgba(79,70,229,0.7); }
+    .btn-ghost { background: transparent; border: 1px solid #374151; color: #e5e7eb; }
+    footer { border-top: 1px solid #111827; padding: 16px; font-size: 12px; color: #6b7280; text-align: center; background: #020617; }
+    @media (max-width: 840px) { h1 { font-size: 28px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-mark">YD</div>
+      <div>
+        <div class="logo-text-main">YD-IT</div>
+        <div class="logo-text-sub">Jobs & Bewerbung</div>
+      </div>
+    </div>
+    <a href="index.html" class="btn btn-ghost">Zurück</a>
+  </header>
+
+  <main>
+    <section class="hero-card">
+      <h1>Arbeiten mit YD-IT</h1>
+      <p>
+        Du möchtest mit YD-IT zusammenarbeiten oder dich für Einsätze im Bereich Remote Hands,
+        Datacenter Support oder IT-Service bewerben? Dann melde dich direkt.
+      </p>
+      <p>
+        Kurz vorstellen, Erfahrung dazuschreiben und angeben, in welchem Bereich du unterstützen kannst.
+      </p>
+      <div class="cta-row">
+        <a href="mailto:yd-it-service@gmx.de?subject=Bewerbung%20bei%20YD-IT" class="btn btn-primary">Bewerben</a>
+        <a href="https://wa.me/4915206955078" class="btn btn-ghost">Per WhatsApp melden</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 YD-IT – Jobs & Bewerbung</footer>
+</body>
+</html>
