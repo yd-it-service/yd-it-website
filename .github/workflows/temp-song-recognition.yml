@@ -3,6 +3,8 @@ name: Temporary Song Recognition
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
@@ -14,7 +16,7 @@ jobs:
       - name: Recognize clip with AudD
         run: |
           python - <<'PY'
-          import json, urllib.parse, urllib.request
+          import urllib.parse, urllib.request
           params = urllib.parse.urlencode({
               'url': 'https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_song_clip.ogg',
               'return': 'apple_music,spotify,musicbrainz',
