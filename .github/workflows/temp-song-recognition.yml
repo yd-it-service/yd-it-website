@@ -15,23 +15,27 @@ jobs:
         run: pip install --quiet faster-whisper
       - name: Extract Spanish lyrics
         run: |
-          curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_song_clip.ogg
+          curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_vocal_4_11.ogg
           python - <<'PY'
           import json
           from faster_whisper import WhisperModel
 
-          model = WhisperModel('small', device='cpu', compute_type='int8')
+          model = WhisperModel('medium', device='cpu', compute_type='int8')
           output = {}
-          for language in ('es', None):
+          for label, language, prompt in (
+              ('spanish', 'es', None),
+              ('auto', None, None),
+              ('latin_prompt', 'es', 'Letra de canción latina.'),
+          ):
               segments, info = model.transcribe(
                   'clip.ogg',
                   language=language,
-                  beam_size=10,
-                  best_of=10,
+                  beam_size=15,
+                  best_of=15,
                   temperature=0,
                   condition_on_previous_text=False,
                   vad_filter=False,
-                  initial_prompt='Letra de una canción en español, música latina de discoteca.',
+                  initial_prompt=prompt,
                   word_timestamps=True,
               )
               rows = []
@@ -44,7 +48,7 @@ jobs:
                       'no_speech_prob': s.no_speech_prob,
                       'words': [w.word for w in (s.words or [])],
                   })
-              output[str(language)] = {
+              output[label] = {
                   'detected_language': info.language,
                   'language_probability': info.language_probability,
                   'segments': rows,
