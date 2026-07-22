@@ -1,8 +1,6 @@
 name: Temporary Song Recognition
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -10,40 +8,53 @@ permissions:
   contents: read
 
 jobs:
-  recognize:
+  transcribe:
     runs-on: ubuntu-latest
     steps:
-      - name: Query AcoustID and AudD
+      - name: Install transcription model
+        run: pip install --quiet faster-whisper
+      - name: Extract Spanish lyrics
         run: |
+          curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_song_clip.ogg
+          ffmpeg -y -i clip.ogg -af "highpass=f=120,lowpass=f=6500,dynaudnorm=f=100:g=20" clean.wav >/dev/null 2>&1
           python - <<'PY'
-          import json, urllib.parse, urllib.request
+          import json
+          from faster_whisper import WhisperModel
 
-          fingerprint = "AQABFloiiVISNOGOj_gThHOUQswRPp5wH72PXDhuvHhOhBKP60EP44YvhFYC7cqQoonyBc-PU6USHLaI5DtiGkeZC00vdIy0EA5F5DqSH8dxJ_iO54h7iNWHHD8q7ih5nDCC5BkeeB9O_ehzfMmDHyE7D0n2wL_QH6yUGe3w_vgO52nQhUSfBee4IBSP5OqFPjqa7QLNB-9yvBS2KjmSPinyB5WYDM23KXh3HCE3JDuPPcZ18JKMJ-ExoXmW4whzxof2Tzj0ZMidq2jyoBe-4RFrVD7SM8X3COIP9-ihSy_xpEmQT5FR6yJ8Yg8NH3waODy-4zlO5UPoJAre4z-0fDH6HT9-MGeg9wi9_Ojhh6g-Do2OWg-e6ERIakhueFWC-wK3PMIjHX1whDk0ZYqC8B1GN8d1XMSbDpdyJG_haiXiZ8WV7bif40ihvRXyHD2aJ8Kl0Kg-eGeHZNMdB7kvfIoC58OJHz9-InwaQcuiMDgTDT-eP9hTaOwhLnmSIvwl9PAXXIkJR8nRNct23Eki8AkuHnUS-vCHyhWe49yMVvmCpo244iTuC4woHo2spBhp9HmQkJOOaLuKnkTFqEej6WB_PDnOIFmqJEmPSDp-BQ-Hk8Ev-KGR5xL0HU-C92iSDNWOPyh14TzhvwgOH_1xHqGcSGj5IHGOvofLwxGHNqKD5hZqSXjCMaioo5E4_OiTJEWzFRf6hEmQRNmPZ_gYgU8Oh8wHNR9-IgzXFJeAXNbgHz0N6UWzSRdCLzrO42AiFbWm48mE8xm-MMiZopSC5oV8AOKAoAIRAAxyDCCJELNUACEEQFJQhJhBgDAgADMMCGaMEUgJYISAhlhiBDGEAKCEAQ4CQABChChCgBJEIIKAE8AYoEAABCEhgFECIeAEUAYQQARABgBlAENICACEEEQgRbQwShBhhEWGIEGUEgpSwaBAzCAEBACEKMGIIEQSIIQQzAlmqFAEEAAMIYogJQgWQCMBnCBAWAMAAQAIYAQgSgjLDCHIACSYYEwwhpQTQDGCIDHGCYGIMgAMsARjBgMAFABFUKONIAgghQhV1AA"
-          acoustid_payload = urllib.parse.urlencode({
-              'client': 'cqUPLmU0_Ac',
-              'duration': '37',
-              'fingerprint': fingerprint,
-              'meta': 'recordings releasegroups compress',
-          }).encode()
-          req = urllib.request.Request('https://api.acoustid.org/v2/lookup', data=acoustid_payload)
-          with urllib.request.urlopen(req, timeout=60) as r:
-              acoustid = json.loads(r.read())
-
-          audd_params = urllib.parse.urlencode({
-              'url': 'https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_song_clip.ogg',
-              'return': 'apple_music,spotify,musicbrainz',
-              'api_token': 'test',
-          })
-          with urllib.request.urlopen('https://api.audd.io/?' + audd_params, timeout=60) as r:
-              audd = json.loads(r.read())
-
-          result = {'acoustid': acoustid, 'audd': audd}
-          data = json.dumps(result, ensure_ascii=False, indent=2).encode()
-          open('result.json', 'wb').write(data)
-          print(data.decode())
+          model = WhisperModel('small', device='cpu', compute_type='int8')
+          output = {}
+          for language in ('es', None):
+              segments, info = model.transcribe(
+                  'clean.wav',
+                  language=language,
+                  beam_size=10,
+                  best_of=10,
+                  temperature=0,
+                  condition_on_previous_text=False,
+                  vad_filter=False,
+                  initial_prompt='Letra de una canción en español, música latina de discoteca.',
+                  word_timestamps=True,
+              )
+              rows = []
+              for s in segments:
+                  rows.append({
+                      'start': s.start,
+                      'end': s.end,
+                      'text': s.text.strip(),
+                      'avg_logprob': s.avg_logprob,
+                      'no_speech_prob': s.no_speech_prob,
+                      'words': [w.word for w in (s.words or [])],
+                  })
+              output[str(language)] = {
+                  'detected_language': info.language,
+                  'language_probability': info.language_probability,
+                  'segments': rows,
+              }
+          print(json.dumps(output, ensure_ascii=False, indent=2))
+          open('transcript.json', 'w', encoding='utf-8').write(json.dumps(output, ensure_ascii=False, indent=2))
           PY
-      - name: Upload recognition result
+      - name: Upload transcript
         uses: actions/upload-artifact@v4
         with:
-          name: song-recognition-result
-          path: result.json
+          name: lyrics-transcript
+          path: transcript.json
