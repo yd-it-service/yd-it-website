@@ -1,0 +1,32 @@
+name: Temporary Song Recognition
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  recognize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recognize clip with AudD
+        run: |
+          python - <<'PY'
+          import json, urllib.parse, urllib.request
+          params = urllib.parse.urlencode({
+              'url': 'https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_song_clip.ogg',
+              'return': 'apple_music,spotify,musicbrainz',
+              'api_token': 'test',
+          })
+          with urllib.request.urlopen('https://api.audd.io/?' + params, timeout=60) as r:
+              data = r.read()
+          open('result.json', 'wb').write(data)
+          print(data.decode('utf-8', errors='replace'))
+          PY
+      - name: Upload recognition result
+        uses: actions/upload-artifact@v4
+        with:
+          name: song-recognition-result
+          path: result.json
