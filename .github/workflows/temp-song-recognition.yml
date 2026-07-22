@@ -15,7 +15,7 @@ jobs:
         run: pip install --quiet faster-whisper
       - name: Extract Spanish lyrics
         run: |
-          curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_vocal_4_11.ogg
+          curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_vocal_12_17.ogg
           python - <<'PY'
           import json
           from faster_whisper import WhisperModel
