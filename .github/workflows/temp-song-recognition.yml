@@ -16,7 +16,6 @@ jobs:
       - name: Extract Spanish lyrics
         run: |
           curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_song_clip.ogg
-          ffmpeg -y -i clip.ogg -af "highpass=f=120,lowpass=f=6500,dynaudnorm=f=100:g=20" clean.wav >/dev/null 2>&1
           python - <<'PY'
           import json
           from faster_whisper import WhisperModel
@@ -25,7 +24,7 @@ jobs:
           output = {}
           for language in ('es', None):
               segments, info = model.transcribe(
-                  'clean.wav',
+                  'clip.ogg',
                   language=language,
                   beam_size=10,
                   best_of=10,
