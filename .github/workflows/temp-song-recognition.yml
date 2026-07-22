@@ -8,56 +8,37 @@ permissions:
   contents: read
 
 jobs:
-  transcribe:
+  candidate:
     runs-on: ubuntu-latest
     steps:
-      - name: Install transcription model
-        run: pip install --quiet faster-whisper
-      - name: Extract Spanish lyrics
+      - name: Fetch candidate preview
         run: |
-          curl -L --fail -o clip.ogg https://raw.githubusercontent.com/yd-it-service/yd-it-website/main/__temp_vocal_24_29.ogg
           python - <<'PY'
-          import json
-          from faster_whisper import WhisperModel
+          import json, urllib.parse, urllib.request
 
-          model = WhisperModel('medium', device='cpu', compute_type='int8')
-          output = {}
-          for label, language, prompt in (
-              ('spanish', 'es', None),
-              ('auto', None, None),
-              ('latin_prompt', 'es', 'Letra de canción latina.'),
-          ):
-              segments, info = model.transcribe(
-                  'clip.ogg',
-                  language=language,
-                  beam_size=15,
-                  best_of=15,
-                  temperature=0,
-                  condition_on_previous_text=False,
-                  vad_filter=False,
-                  initial_prompt=prompt,
-                  word_timestamps=True,
-              )
-              rows = []
-              for s in segments:
-                  rows.append({
-                      'start': s.start,
-                      'end': s.end,
-                      'text': s.text.strip(),
-                      'avg_logprob': s.avg_logprob,
-                      'no_speech_prob': s.no_speech_prob,
-                      'words': [w.word for w in (s.words or [])],
-                  })
-              output[label] = {
-                  'detected_language': info.language,
-                  'language_probability': info.language_probability,
-                  'segments': rows,
-              }
-          print(json.dumps(output, ensure_ascii=False, indent=2))
-          open('transcript.json', 'w', encoding='utf-8').write(json.dumps(output, ensure_ascii=False, indent=2))
+          query = urllib.parse.urlencode({
+              'term': 'N/A Hey Girl Jin Akanishi Ryo Nishikido',
+              'entity': 'song',
+              'limit': 50,
+              'country': 'JP',
+          })
+          with urllib.request.urlopen('https://itunes.apple.com/search?' + query, timeout=60) as r:
+              data = json.loads(r.read())
+          open('itunes-results.json', 'w', encoding='utf-8').write(json.dumps(data, ensure_ascii=False, indent=2))
+          print(json.dumps(data, ensure_ascii=False, indent=2))
+
+          candidates = [x for x in data.get('results', []) if x.get('trackName', '').lower() == 'hey girl']
+          if not candidates:
+              raise SystemExit('No Hey Girl candidate found')
+          item = candidates[0]
+          print('SELECTED', item.get('artistName'), item.get('trackName'), item.get('previewUrl'))
+          with urllib.request.urlopen(item['previewUrl'], timeout=60) as r:
+              open('candidate-preview.m4a', 'wb').write(r.read())
           PY
-      - name: Upload transcript
+      - name: Upload candidate
         uses: actions/upload-artifact@v4
         with:
-          name: lyrics-transcript
-          path: transcript.json
+          name: candidate-preview
+          path: |
+            candidate-preview.m4a
+            itunes-results.json
