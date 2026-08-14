@@ -1,0 +1,183 @@
+name: Add YD-IT time-saver section
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-time-saver-section.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add time-saver section
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          if 'time-saver-section' not in html:
+              css = r'''
+    .time-saver-section {
+      margin-top: 28px;
+      border-radius: 22px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(30,64,175,.34), rgba(15,23,42,.96) 48%, rgba(2,6,23,.99));
+      border: 1px solid rgba(99,102,241,.55);
+      box-shadow: 0 18px 60px rgba(0,0,0,.48);
+      position: relative;
+      overflow: hidden;
+    }
+    .time-saver-section::before {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(99,102,241,.16);
+      filter: blur(8px);
+      top: -120px;
+      right: -70px;
+      pointer-events: none;
+    }
+    .time-saver-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(129,140,248,.55);
+      color: #c7d2fe;
+      background: rgba(30,41,59,.65);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .time-saver-section h2 {
+      margin: 14px 0 8px;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.15;
+      color: #f8fafc;
+    }
+    .time-saver-copy {
+      max-width: 820px;
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .time-saver-highlight {
+      display: block;
+      margin-top: 12px;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+    }
+    .time-saver-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 18px 0 0;
+    }
+    .time-saver-point {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      background: rgba(2,6,23,.55);
+      color: #e2e8f0;
+      font-size: 12px;
+    }
+    .time-saver-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    @media (max-width: 640px) {
+      .time-saver-section { padding: 20px; }
+      .time-saver-actions .btn { width: 100%; justify-content: center; }
+    }
+'''
+              html = html.replace('</style>', css + '\n  </style>', 1)
+
+              de = r'''
+<section class="time-saver-section" aria-label="YD-IT übernimmt Ihren Vor-Ort-Einsatz">
+  <span class="time-saver-kicker">Vor-Ort-Service ohne Zeitverlust</span>
+  <h2>Keine Zeit fürs Rechenzentrum? Wir gehen für Sie hin.</h2>
+  <p class="time-saver-copy">
+    Sie können nicht selbst vor Ort sein oder möchten sich den Aufwand mit Security, Zutritt, Anmeldung und Abstimmung sparen?
+    YD-IT übernimmt Ihren Vor-Ort-Einsatz zuverlässig – von der Security-Abwicklung bis zur technischen Umsetzung im Rack oder Cage.
+    <strong class="time-saver-highlight">Sie sparen Zeit. Wir kümmern uns um den Rest.</strong>
+  </p>
+  <div class="time-saver-points">
+    <span class="time-saver-point">Security &amp; Zutritt</span>
+    <span class="time-saver-point">Vor-Ort-Ausführung</span>
+    <span class="time-saver-point">Remote Hands</span>
+    <span class="time-saver-point">Dokumentation &amp; Rückmeldung</span>
+  </div>
+  <div class="time-saver-actions">
+    <a class="btn btn-primary" href="https://wa.me/4915206955078">Einsatz per WhatsApp anfragen</a>
+    <a class="btn btn-ghost" href="#kontakt">Kontakt &amp; Preise</a>
+  </div>
+</section>
+'''
+
+              en = r'''
+<section class="time-saver-section" aria-label="YD-IT handles your on-site datacenter visit">
+  <span class="time-saver-kicker">On-site service without the hassle</span>
+  <h2>Can't be at the datacenter yourself? We go there for you.</h2>
+  <p class="time-saver-copy">
+    No time for travel, security procedures, access coordination and on-site handling?
+    YD-IT takes care of the visit for you – from access and security coordination to the technical work inside your rack or cage.
+    <strong class="time-saver-highlight">You save time. We take care of the rest.</strong>
+  </p>
+  <div class="time-saver-points">
+    <span class="time-saver-point">Security &amp; Access</span>
+    <span class="time-saver-point">On-site Execution</span>
+    <span class="time-saver-point">Remote Hands</span>
+    <span class="time-saver-point">Documentation &amp; Feedback</span>
+  </div>
+  <div class="time-saver-actions">
+    <a class="btn btn-primary" href="https://wa.me/4915206955078">Request a visit via WhatsApp</a>
+    <a class="btn btn-ghost" href="#contact-en">Contact &amp; pricing</a>
+  </div>
+</section>
+'''
+
+              anchor = '</section>\n<div class="footer-banner-wrap">'
+              if html.count(anchor) < 2:
+                  raise SystemExit('Expected German and English hero anchors were not found.')
+              html = html.replace(anchor, '</section>\n' + de + '<div class="footer-banner-wrap">', 1)
+              html = html.replace(anchor, '</section>\n' + en + '<div class="footer-banner-wrap">', 1)
+              path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit website update
+        shell: bash
+        run: |
+          git config user.name "yd-it-service"
+          git config user.email "yd-it-service@gmx.de"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Add time-saving datacenter on-site message"
+            git push
+          fi
+
+      - name: Upload current HTML
+        uses: actions/upload-artifact@v4
+        with:
+          name: YD-IT-current-index-html
+          path: index.html
+          if-no-files-found: error
