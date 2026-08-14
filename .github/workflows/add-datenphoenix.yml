@@ -1,6 +1,6 @@
 name: Add DatenPhoenix partner
 
-on:
+"on":
   push:
     branches: [main]
     paths:
@@ -13,69 +13,38 @@ jobs:
   add-partner:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Add DatenPhoenix to German and English partner sections
+      - name: Patch index
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-
-          path = Path('index.html')
-          html = path.read_text(encoding='utf-8')
-
-          german_anchor = '''<div class="card">
-<div class="partner-logo-wrap">
-<img alt="Velour Concierge" class="partner-logo" src="partner-velour.png"/>
-</div>
-<h3>Velour Concierge</h3>
-<p>Premium Service, Organisation und Projektunterstützung.</p>
-</div>'''
-
-          german_card = '''
-<div class="card">
-<div class="partner-logo-wrap">
-<img alt="DatenPhoenix" class="partner-logo" src="datenphoenix.jpg"/>
-</div>
-<h3>DatenPhoenix</h3>
-<p>Partner für professionelle Datenrettung und technische Recovery-Services.</p>
-</div>'''
-
-          english_anchor = '''<div class="card">
-<div class="partner-logo-wrap"><img alt="Velour Concierge" class="partner-logo" src="partner-velour.png"/></div>
-<h3>Velour Concierge</h3>
-<p>Premium service, organization and project support.</p>
-</div>'''
-
-          english_card = '''
-<div class="card">
-<div class="partner-logo-wrap"><img alt="DatenPhoenix" class="partner-logo" src="datenphoenix.jpg"/></div>
-<h3>DatenPhoenix</h3>
-<p>Professional data recovery and technical recovery services.</p>
-</div>'''
-
+          path = Path("index.html")
+          html = path.read_text(encoding="utf-8")
           if 'src="datenphoenix.jpg"' not in html:
-              if german_anchor not in html:
-                  raise SystemExit('German partner anchor not found')
-              if english_anchor not in html:
-                  raise SystemExit('English partner anchor not found')
-              html = html.replace(german_anchor, german_anchor + german_card, 1)
-              html = html.replace(english_anchor, english_anchor + english_card, 1)
-              path.write_text(html, encoding='utf-8')
+              de = '<p>Premium Service, Organisation und Projektunterstützung.</p>\n</div>'
+              de_card = de + '\n<div class="card">\n<div class="partner-logo-wrap">\n<img alt="DatenPhoenix" class="partner-logo" src="datenphoenix.jpg"/>\n</div>\n<h3>DatenPhoenix</h3>\n<p>Partner für professionelle Datenrettung und technische Recovery-Services.</p>\n</div>'
+              en = '<p>Premium service, organization and project support.</p>\n</div>'
+              en_card = en + '\n<div class="card">\n<div class="partner-logo-wrap"><img alt="DatenPhoenix" class="partner-logo" src="datenphoenix.jpg"/></div>\n<h3>DatenPhoenix</h3>\n<p>Professional data recovery and technical recovery services.</p>\n</div>'
+              if de not in html:
+                  raise SystemExit("German partner anchor not found")
+              if en not in html:
+                  raise SystemExit("English partner anchor not found")
+              html = html.replace(de, de_card, 1)
+              html = html.replace(en, en_card, 1)
+              path.write_text(html, encoding="utf-8")
           PY
-
           rm -f datenphoenix.png datenphoenix-partner.html
           rm -f .github/workflows/add-datenphoenix.yml
 
-      - name: Commit partner update
+      - name: Commit
         shell: bash
         run: |
           git config user.name "yd-it-service"
           git config user.email "yd-it-service@gmx.de"
           git add -A
           if git diff --cached --quiet; then
-            echo "No changes required"
             exit 0
           fi
           git commit -m "Show DatenPhoenix in partner section"
