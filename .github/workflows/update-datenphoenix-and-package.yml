@@ -1,0 +1,48 @@
+name: Update DatenPhoenix image and package current site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-datenphoenix-and-package.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current website
+        uses: actions/checkout@v4
+
+      - name: Replace DatenPhoenix partner image
+        shell: bash
+        run: |
+          cat > /tmp/datenphoenix.b64 <<'B64'
+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
+B64
+          base64 -d /tmp/datenphoenix.b64 > datenphoenix.jpg
+          file datenphoenix.jpg
+          rm -f .github/workflows/update-datenphoenix-and-package.yml
+
+      - name: Commit current site image update
+        shell: bash
+        run: |
+          git config user.name "yd-it-service"
+          git config user.email "yd-it-service@gmx.de"
+          git add -A
+          git commit -m "Use cropped DatenPhoenix partner image"
+          git push
+
+      - name: Create downloadable ZIP of current website
+        shell: bash
+        run: |
+          zip -r YD-IT-current-site.zip . -x '.git/*' '.github/*' 'YD-IT-current-site.zip'
+
+      - name: Upload website ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: YD-IT-current-site
+          path: YD-IT-current-site.zip
+          if-no-files-found: error
